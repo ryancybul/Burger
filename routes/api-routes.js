@@ -14,14 +14,13 @@ module.exports = function(app) {
   });
 
   // POST route for adding a new burger to the db. 
-  app.post("/api/burgers", function(req, res) {
-    console.log('it works');
+  app.post("/api/newBurger", function(req, res) {
     // Adds a new burger and saves it to the database
     db.Burger.create({
       text: req.body.userInput,
       devoured: false
     }).then((response) => {
-      res.json(response);
+      res.send();
     });
   });
 

@@ -18,8 +18,10 @@
     </div>
 
     <div>
-        <form id="burger-form">                
-            <input type="text" id="userInput" class="form-control" placeholder="Add burger name here"/>
+        <form method="POST" action="/api/newBurger" class="form">
+            <div class="form-group">
+                <input type="text" name="userInput" class="form-control" placeholder="Add burger name here"/>
+            </div>                
             <button type="submit" class="btn btn-primary">Add a Burger</button>
         </form>
     </div>
@@ -32,7 +34,7 @@
       <div>
         <h3>Eaten burgers</h3>
         <span class="burger-devoured">
-          
+
         </span>
       </div>
     </div>

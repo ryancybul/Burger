@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
       },
     devoured: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   });
   return Burger;
