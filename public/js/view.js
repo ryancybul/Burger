@@ -1,13 +1,11 @@
-import { NOTINITIALIZED } from "dns";
-
 $(document).ready(function() {
   //Variables
-  let burgerInput = $("input.new-burger");
+  let burgerInput = $("input.userInput");
   let burgerCont = $(".burger-container");
   let burgerDev = $(".burger-devoured");
 
   //Event listeners
-  $(document).on("click")
+  // $(document).on("submit", ".form", insertBurger);
 
   //Array
   let burgers = [];
@@ -15,15 +13,35 @@ $(document).ready(function() {
   //Runs the list on page load
   getBurgers();
 
-  //This function resets the list of burgers
-  function initializeRows() {
-    burgerCont.empty();
-    var rowsToAdd = [];
-    for (var i=0; i < burgers.length; i++){
-      rowsToAdd.push(createNewRow(burgers[i]));
+    // This function constructs a burger-item row
+    function createNewRow(burger) {
+      var newBurger = $(
+        [
+          "<li class='list-group-item todo-item'>",
+          "<span>",
+          burger.text,
+          "</span>",
+          "<input type='text' class='edit' style='display: none;'>",
+          "<button class='delete btn btn-danger'>Devour</button>",
+          "</li>"
+        ].join("")
+      );
+  
+      newBurger.find("button.delete").data("id", burger.id);
+      newBurger.find("input.edit").css("display", "none");
+      newBurger.data("burger", burger);
+      return newBurger;
     }
-    burgerCont.prepend(rowsToAdd);
-  }
+
+    //This function resets the list of burgers
+    function initializeRows() {
+      burgerCont.empty();
+      var rowsToAdd = [];
+      for (var i=0; i < burgers.length; i++){
+        rowsToAdd.push(createNewRow(burgers[i]));
+      }
+      burgerCont.prepend(rowsToAdd);
+    }
 
   //Gets the burgers from the database and updates the view
   function getBurgers(){
@@ -33,20 +51,4 @@ $(document).ready(function() {
     });
   }
 
-    // This function constructs a todo-item row
-    function createNewRow(todo) {
-      var $newInputRow = $(
-        [
-          "<li class='list-group-item todo-item'>",
-          "<span>",
-          todo.text,
-          "</span>",
-          "<input type='text' class='edit' style='display: none;'>",
-          "<button class='delete btn btn-danger'>x</button>",
-          "<button class='complete btn btn-primary'>✓</button>",
-          "</li>"
-        ].join("")
-      );
-  
-  });
-  
+})

@@ -5,6 +5,11 @@ var db = require("../models");
 // =============================================================
 module.exports = function(app) {
 
+  //on page load or on redirects
+  // app.get("/", (req, res) => {
+  //   res.redirect("/burgers");
+  // });
+
   // GET route for getting all of the burgers from the db. 
   app.get("/api/burgers", function(req, res) {
     // Retrieves all of the burgers from the database and res.json
@@ -20,21 +25,20 @@ module.exports = function(app) {
       text: req.body.userInput,
       devoured: false
     }).then((response) => {
-      res.send();
+      res.redirect("/");
     });
   });
 
   // PUT route for updating todos. We can access the updated todo in req.body
   app.put("/api/burgers", function(req, res) {
-    db.Todo.update({
-      devoured: req.body.complete
+    db.Burger.update({
+      devoured: true
     }, {
       where: {
         id: req.body.id
       }
     }).then((results) => {
-      res.json(results);
+      res.redirect("/");
     });
   });
-
 };
