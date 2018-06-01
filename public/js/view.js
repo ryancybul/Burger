@@ -5,7 +5,7 @@ $(document).ready(function() {
   let burgerDev = $(".burger-devoured");
 
   //Event listeners
-  // $(document).on("submit", ".form", insertBurger);
+  $(document).on("submit", ".form", insertBurger);
 
   //Array
   let burgers = [];
@@ -51,4 +51,14 @@ $(document).ready(function() {
     });
   }
 
+  //This function inserts a new burger into the database.
+  function insertBurger(event){
+    event.preventDefault();
+    let newBurger = {
+      text: burgerInput.val().trim(),
+      devoured: false
+    };
+  $.post("api/newBurger", newBurger, getBurgers);
+  burgerInput.val("");
+}
 })

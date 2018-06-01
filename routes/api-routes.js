@@ -13,8 +13,8 @@ module.exports = function(app) {
   // GET route for getting all of the burgers from the db. 
   app.get("/api/burgers", function(req, res) {
     // Retrieves all of the burgers from the database and res.json
-    db.Burger.findAll({}).then((results) => {
-      res.json(results);
+    db.Burger.findAll({}).then((dbBurger) => {
+      res.json(dbBurger);
     })
   });
 
@@ -22,10 +22,11 @@ module.exports = function(app) {
   app.post("/api/newBurger", function(req, res) {
     // Adds a new burger and saves it to the database
     db.Burger.create({
-      text: req.body.userInput,
-      devoured: false
-    }).then((response) => {
-      res.redirect("/");
+      text: req.body.text,
+      devoured: req.body.devoured
+    }).then((dbBurger) => {
+      //We have access to the new burger as an argument in the callback function.
+      res.json(dbBurger);
     });
   });
 
