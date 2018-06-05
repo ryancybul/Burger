@@ -73,11 +73,13 @@ $(document).ready(function() {
   //This function updates the burger as devoured
   function updateDevoured() {
     var burger = $(this).parent().data("burger");
+    console.log("This is a burger: ", burger);
     burger.devoured = true;
     $.ajax({
       method: "PUT",
       url: "/api/update",
       data: burger
-    }).then(getBurgers);
+    })
+    window.location.reload();
   }
 })
