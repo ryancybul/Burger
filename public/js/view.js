@@ -18,7 +18,7 @@ $(document).ready(function() {
       function createNewRow(burger) {
         var newBurger = $(
           [
-            "<li class='list-group-item todo-item'>",
+            "<li class='list-group-item burger'>",
             "<span>",
             burger.text,
             "</span>",
@@ -34,6 +34,23 @@ $(document).ready(function() {
         return newBurger;
       }
 
+      function createNewDevoured(burger) {
+        var devouredBurger = $(
+          [
+            "<li class='list-group-item burger'>",
+            "<span>",
+            burger.text,
+            "</span>",
+            "<input type='text' class='edit' style='display: none;'>",
+            "</li>"
+          ].join("")
+        );
+
+        devouredBurger.find("input.edit").css("display", "none");
+        devouredBurger.data("burger", devouredBurger);
+        return devouredBurger;
+      }
+
       //This function resets the list of burgers
       function initializeRows() {
         burgerCont.empty();
@@ -44,7 +61,7 @@ $(document).ready(function() {
           if (burgers[i].devoured === false) {
             rowsToAdd.push(createNewRow(burgers[i]));
           } else {
-            rowsToAddDev.push(createNewRow(burgers[i]));
+            rowsToAddDev.push(createNewDevoured(burgers[i]));
           }
         }
         burgerCont.prepend(rowsToAdd);

@@ -1,3 +1,8 @@
+.burger {
+  display: flex;
+  justify-content: space-around;
+}
+
 .burger-wrapper {
   display: flex;
   flex-direction: row;
@@ -7,12 +12,19 @@
   border: 1px solid black;
   border-radius: 10px;
   margin: 10px;
+  text-align: center;
   width: 50%;
 }
 
 .eaten-burgers {
   border: 1px solid black;
   border-radius: 10px;
+  text-align: center;
   margin: 10px;
+  text-align: center;
   width: 50%;
+}
+
+.header {
+  text-align: center;
 }
