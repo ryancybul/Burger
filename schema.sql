@@ -1,4 +1,4 @@
--- Drops the todolist if it exists currently --
+-- Drops the burgerList if it exists currently --
 DROP DATABASE IF EXISTS burgerList;
--- Creates the "todolist" database --
+-- Creates the "burgerList" database --
 CREATE DATABASE burgerList;
